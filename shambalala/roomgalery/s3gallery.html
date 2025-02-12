@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hotel Gallery</title>
+  <style>
+    /* CSS styling for the gallery */
+    .gallery {
+      display: none;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .gallery-item {
+      width: 300px;
+      margin: 10px;
+    }
+    
+    .gallery-item img {
+      width: 100%;
+      height: auto;
+    }
+    
+    .gallery-item .caption {
+      text-align: center;
+      margin-top: 5px;
+    }
+    
+    .booking-form {
+      display: none;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to Our Hotel Gallery</h1>
+  
+  <button onclick="showAvailableRooms()">Check Available Rooms</button>
+  <button onclick="showOccupiedRooms()">Check Occupied Rooms</button>
+  <button onclick="showRestaurantGallery()">About the Restaurant</button>
+  <button onclick="showConferenceHallGallery()">Conference Hall</button>
+  
+  <h2>Available Rooms</h2>
+  <div class="gallery" id="available-rooms"></div>
+  
+  <h2>Occupied Rooms</h2>
+  <div class="gallery" id="occupied-rooms"></div>
+  
+  <h2>About the Restaurant</h2>
+  <div class="gallery" id="restaurant"></div>
+  
+  <h2>Conference Hall</h2>
+  <div class="gallery" id="conference-hall"></div>
+  
+  <div class="booking-form" id="booking-form">
+    <h2>Book Now</h2>
+    <form>
+      <label for="name">Name:</label>
+      <input type="text" id="name" required>
+      
+      <label for="address">Address:</label>
+      <input type="text" id="address" required>
+      
+      <label for="email">Email:</label>
+      <input type="email" id="email" required>
+      
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" required>
+      
+      <input type="submit" value="Submit">
+    </form>
+    <div id="login-form">
+      <h3>Login</h3>
+      <label for="loginEmail">Email:</label>
+      <input type="email" id="loginEmail" required>
+      
+      <label for="loginPassword">Password:</label>
+      <input type="password" id="loginPassword" required>
+      
+      <button id="loginButton">Login</button>
+    </div>
+  </div>
+  
+  <script>
+    // JavaScript code to populate the gallery with images and captions
+    
+    // Available rooms data
+    const availableRooms = [
+      { id: 1, image: 'room1.png', price: 'Room1 $100' },
+      { id: 2, image: 'room2.png', price: 'Room2 $120' },
+      { id: 3, image: 'room3.png', price: 'Room3 $150' },
+    ];
+    
+    // Occupied rooms data
+    const occupiedRooms = [
+      { id: 4, image: 'room5.png', name: 'Occupied Room 1' },
+      { id: 5, image: 'room6.png', name: 'Occupied Room 2' },
+    ];
+    
+    // Restaurant images data
+    const restaurantImages = [
+      { image: 'restorant.png', description: 'Welcome to our restaurant! Enjoy delicious meals in a cozy atmosphere.' },
+      { image: 'restorant2.png', description: 'Experience fine dining at our restaurant. Our chefs prepare exquisite dishes to satisfy your taste buds.' },
+      { image: 'restorant3.png', description: 'Indulge in a culinary journey at our restaurant. We offer a wide range of cuisines to suit every palate.' },
+    ];
+    
+    // Conference hall image and description
+    const conferenceHallImage = { image: 'conference_hall.png', description: 'Host your events and conferences in our spacious and well-equipped conference hall.' };
+    
+    // Function to create a gallery item
+    function createGalleryItem(image, caption, bookable) {
+      const galleryItem = document.createElement('div');
+      galleryItem.className = 'gallery-item';
+      
+      const img = document.createElement('img');
+      img.src = image;
+      galleryItem.appendChild(img);
+      
+      if (caption) {
+        constcaptionElement = document.createElement('div');
+        captionElement.className = 'caption';
+        captionElement.textContent = caption;
+        galleryItem.appendChild(captionElement);
+      }
+      
+      if (bookable) {
+        const bookButton = document.createElement('button');
+        bookButton.textContent = 'Book Now';
+        bookButton.addEventListener('click', showBookingForm);
+        galleryItem.appendChild(bookButton);
+      }
+      
+      return galleryItem;
+    }
+    
+    // Function to show available rooms
+    function showAvailableRooms() {
+      const availableRoomsElement = document.getElementById('available-rooms');
+      availableRoomsElement.innerHTML = '';
+      
+      availableRooms.forEach(room => {
+        const galleryItem = createGalleryItem(room.image, room.price, true);
+        availableRoomsElement.appendChild(galleryItem);
+      });
+      
+      availableRoomsElement.style.display = 'flex';
+      document.getElementById('occupied-rooms').style.display = 'none';
+      document.getElementById('restaurant').style.display = 'none';
+      document.getElementById('conference-hall').style.display = 'none';
+      document.getElementById('booking-form').style.display = 'none';
+    }
+    
+    // Function to show occupied rooms
+    function showOccupiedRooms() {
+      const occupiedRoomsElement = document.getElementById('occupied-rooms');
+      occupiedRoomsElement.innerHTML = '';
+      
+      occupiedRooms.forEach(room => {
+        const galleryItem = createGalleryItem(room.image, room.name, false);
+        occupiedRoomsElement.appendChild(galleryItem);
+      });
+      
+      occupiedRoomsElement.style.display = 'flex';
+      document.getElementById('available-rooms').style.display = 'none';
+      document.getElementById('restaurant').style.display = 'none';
+      document.getElementById('conference-hall').style.display = 'none';
+      document.getElementById('booking-form').style.display = 'none';
+    }
+    
+    // Function to show the restaurant gallery
+    function showRestaurantGallery() {
+      const restaurantElement = document.getElementById('restaurant');
+      restaurantElement.innerHTML = '';
+      
+      restaurantImages.forEach(imageData => {
+        const galleryItem = createGalleryItem(imageData.image, imageData.description, false);
+        restaurantElement.appendChild(galleryItem);
+      });
+      
+      restaurantElement.style.display = 'flex';
+      document.getElementById('available-rooms').style.display = 'none';
+      document.getElementById('occupied-rooms').style.display = 'none';
+      document.getElementById('conference-hall').style.display = 'none';
+      document.getElementById('booking-form').style.display = 'none';
+    }
+    
+    // Function to show the conference hall gallery
+    function showConferenceHallGallery() {
+      const conferenceHallElement = document.getElementById('conference-hall');
+      conferenceHallElement.innerHTML = '';
+      
+      const galleryItem = createGalleryItem(conferenceHallImage.image, conferenceHallImage.description, false);
+      conferenceHallElement.appendChild(galleryItem);
+      
+      conferenceHallElement.style.display = 'flex';
+      document.getElementById('available-rooms').style.display = 'none';
+      document.getElementById('occupied-rooms').style.display = 'none';
+      document.getElementById('restaurant').style.display = 'none';
+      document.getElementById('booking-form').style.display = 'none';
+    }
+    
+    // Function to show the booking form
+    function showBookingForm() {
+      document.getElementById('booking-form').style.display = 'block';
+    }
+  </script>
+</body>
+</html>

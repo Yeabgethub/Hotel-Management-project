@@ -1,0 +1,238 @@
+/* Global styles */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: lightblue;
+  color: dimgray;
+}
+
+a {
+  color: royalblue;
+  text-decoration: none;
+}
+
+a:hover {
+  color: cornflowerblue;
+}
+
+/* Header styles */
+.header {
+  background-color: black;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo img {
+  width: 120px;
+  height: auto;
+}
+
+
+nav a {
+  color: white;
+  margin-left: 20px;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: lightgray;
+}
+
+/* Banner styles */
+.banner {
+  background-image: url("shambala.jpg");
+  background-size: cover;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  text-align: center;
+  animation: fadeIn 1s ease-in-out;
+    position: relative;
+  height: 300px;
+  overflow: hidden;
+}
+
+.banner h1 {
+  font-size: 3em;
+}
+.slideshow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  animation: slide 10s infinite; /* Adjust timing as needed */
+}
+
+.slideshow img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* Room section styles */
+.room {
+  padding: 50px 0;
+  text-align: center;
+}
+
+.room h2 {
+  color: dimgray;
+  margin-bottom: 20px;
+}
+
+/* Gallery section styles */
+.gallery {
+  display: flex;
+  justify-content: space-around;
+  margin: 50px 0;
+}
+
+.gallery img {
+  width: 30%;
+  height: auto;
+  border-radius: 5px;
+}
+
+/* Contact section styles */
+.contact {
+  background-color: white;
+  padding: 50px 0;
+  text-align: center;
+}
+
+.contact form {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.contact label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+  color: dimgray;
+}
+
+.contact input,
+.contact textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.contact button {
+  background-color: royalblue;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.contact button:hover {
+  background-color: cornflowerblue;
+}
+
+/* Footer styles */
+.footer {
+  background-color: #333;
+  color: white;
+  padding: 50px 0;
+  text-align: center;
+}
+
+.footer a {
+  color: white;
+  margin: 0 10px;
+}
+
+.footer a:hover {
+  color: royalblue;
+}
+
+/* Social icons */
+.social-icons {
+  list-style-type: none;
+  padding: 0;
+}
+
+.social-icons li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.social-icons a {
+  color: white;
+  font-size: 1.5em;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slide {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-100%); }
+  50% { transform: translateX(-200%); }
+  75% { transform: translateX(-300%); }
+  100% { transform: translateX(0); }
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Responsive styles */
+@media screen and (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  nav {
+    margin-top: 20px;
+  }
+
+  nav a {
+    margin: 10px;
+  }
+
+  .banner h1 {
+    font-size: 2.5em;
+  }
+
+  .gallery img {
+    width: 100%;
+  }
+}

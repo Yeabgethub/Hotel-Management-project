@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hotel Gallery</title>
+  <style>
+    /* CSS styling for the gallery */
+    .gallery {
+      display: none;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    
+    .gallery-item {
+      width: 300px;
+      margin: 10px;
+    }
+    
+    .gallery-item img {
+      width: 100%;
+      height: auto;
+    }
+    
+    .gallery-item .caption {
+      text-align: center;
+      margin-top: 5px;
+    }
+    
+    .booking-form {
+      display: none;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to Our Hotel Gallery</h1>
+  
+  <button onclick="showAvailableRooms()">Check Available Rooms</button>
+  <button onclick="showOccupiedRooms()">Check Occupied Rooms</button>
+  
+  <h2>Available Rooms</h2>
+  <div class="gallery" id="available-rooms"></div>
+  
+  <h2>Occupied Rooms</h2>
+  <div class="gallery" id="occupied-rooms"></div>
+  
+  <h2>About the Restaurant</h2>
+  <div class="gallery" id="restaurant"></div>
+  
+  <div class="booking-form" id="booking-form">
+    <h2>Book Now</h2>
+    <form>
+      <label for="name">Name:</label>
+      <input type="text" id="name" required>
+      
+      <label for="address">Address:</label>
+      <input type="text" id="address" required>
+      
+      <label for="email">Email:</label>
+      <input type="email" id="email" required>
+      
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" required>
+      
+      <input type="submit" value="Submit">
+    </form>
+    <div id="login-form">
+      <h3>Login</h3>
+      <label for="loginEmail">Email:</label>
+      <input type="email" id="loginEmail" required>
+      
+      <label for="loginPassword">Password:</label>
+      <input type="password" id="loginPassword" required>
+      
+      <button id="loginButton">Login</button>
+    </div>
+  </div>
+  
+  <script>
+    // JavaScript code to populate the gallery with images and captions
+    
+    // Available rooms data
+    const availableRooms = [
+      { image: 'room1.png', price: 'Room1 $100' },
+      { image: 'room2.png', price: ' Room2 $120' },
+      { image: 'room3.png', price: ' Room3 $150' },
+    ];
+    
+    // Occupied rooms data
+    const occupiedRooms = [
+      { image: 'room5.png', name: 'Occupied Room 1' },
+      { image: 'room6.png', name: 'Occupied Room 2' },
+    ];
+    
+    // Restaurant images data
+    const restaurantImages = [
+      { image: 'restorant.png' },
+      { image: 'restorant2.png' },
+      { image: 'restorant3.png' },
+    ];
+    
+    // Function to create a gallery item
+    function createGalleryItem(image, caption, bookable) {
+      const galleryItem = document.createElement('div');
+      galleryItem.className = 'gallery-item';
+      
+      const img = document.createElement('img');
+      img.src = image;
+      galleryItem.appendChild(img);
+      
+      if (caption) {
+        const captionElem = document.createElement('div');
+        captionElem.className = 'caption';
+        captionElem.textContent = caption;
+        galleryItem.appendChild(captionElem);
+      }
+      
+      if (bookable) {
+        const bookNowButton = document.createElement('button');
+        bookNowButton.textContent = 'Book Now';
+        bookNowButton.addEventListener('click', showBookingForm);
+        galleryItem.appendChild(bookNowButton);
+      }
+      
+      return galleryItem;
+    }
+    
+    // Function to show the booking form
+    function showBookingForm() {
+      const bookingForm = document.getElementById('booking-form');
+      bookingForm.style.display = 'block';
+    }
+    
+    // Function to show available rooms
+    function showAvailableRooms() {
+      const availableRoomsGallery = document.getElementById('available-rooms');
+      const occupiedRoomsGallery = document.getElementById('occupied-rooms');
+      const restaurantGallery = document.getElementById('restaurant');
+      
+      // Hide other galleries
+      occupiedRoomsGallery.style.display = 'none';
+      restaurantGallery.style.display = 'none';
+      
+      // Show available rooms gallery
+      availableRoomsGallery.style.display= 'flex';
+      
+      // Clear available rooms gallery
+      availableRoomsGallery.innerHTML = '';
+      
+      // Populate available rooms gallery
+      availableRooms.forEach(function(room) {
+        const galleryItem = createGalleryItem(room.image, 'Price: ' + room.price, true);
+        availableRoomsGallery.appendChild(galleryItem);
+      });
+    }
+    
+    // Function to show occupied rooms
+    function showOccupiedRooms() {
+      const availableRoomsGallery = document.getElementById('available-rooms');
+      const occupiedRoomsGallery = document.getElementById('occupied-rooms');
+      const restaurantGallery = document.getElementById('restaurant');
+      
+      // Hide other galleries
+      availableRoomsGallery.style.display = 'none';
+      restaurantGallery.style.display = 'none';
+      
+      // Show occupied rooms gallery
+      occupiedRoomsGallery.style.display = 'flex';
+      
+      // Clear occupied rooms gallery
+      occupiedRoomsGallery.innerHTML = '';
+      
+      // Populate occupied rooms gallery
+      occupiedRooms.forEach(function(room) {
+        const galleryItem = createGalleryItem(room.image, room.name);
+        occupiedRoomsGallery.appendChild(galleryItem);
+      });
+    }
+    
+    // Populate restaurant gallery
+    const restaurantGallery = document.getElementById('restaurant');
+    restaurantImages.forEach(function(image) {
+      const galleryItem = createGalleryItem(image.image);
+      restaurantGallery.appendChild(galleryItem);
+    });
+  </script>
+</body>
+</html>

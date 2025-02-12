@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Hotel Gallery</title>
+  <style>
+    .gallery-container {
+      width: 80%;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .gallery {
+      display: flex;
+      transition: transform 0.3s ease-in-out;
+    }
+    
+    .gallery img {
+      width: 100%;
+      height: auto;
+    }
+    
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 24px;
+      padding: 10px;
+      background-color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    .arrow-left {
+      left: 10px;
+    }
+    
+    .arrow-right {
+      right: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Hotel Gallery</h1>
+  
+  <div class="gallery-container">
+    <div class="gallery">
+      <img src="room1.png" alt="Image 1">
+      <img src="room1.png" alt="Image 1">
+      <img src="room1.png" alt="Image 1">
+      <img src="room1.png" alt="Image 1">
+      <img src="room1.png" alt="Image 1">
+      <img src="room1.png" alt="Image 1">
+      <img src="room1.png" alt="Image 1">
+      <img src="room1.png" alt="Image 1">
+      <img src="room1.png" alt="Image 1">
+      <img src="room1.png" alt="Image 1">
+      <!-- Add more <img> tags for additional images -->
+    </div>
+    <button class="arrow arrow-left" onclick="scrollGallery(-1)">&#60;</button>
+    <button class="arrow arrow-right" onclick="scrollGallery(1)">&#62;</button>
+  </div>
+
+  <script>
+    function scrollGallery(direction) {
+      const gallery = document.querySelector('.gallery');
+      const scrollAmount = direction * gallery.offsetWidth;
+      gallery.scrollLeft += scrollAmount;
+    }
+  </script>
+</body>
+</html>
